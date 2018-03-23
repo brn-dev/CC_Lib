@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CC_Lib;
 using CC_Lib.Structures;
@@ -23,8 +25,6 @@ namespace Test
             string test = pq.PollLowest();
 
             test = pq.PollHighest();
-
-
         }
 
         public static string DoSmth(string[] strings)
