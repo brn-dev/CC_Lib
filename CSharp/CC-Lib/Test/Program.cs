@@ -20,7 +20,10 @@ namespace Test
             pq.Add("4", 4);
             pq.Add("1", 1);
 
-            var x = pq[-2];
+            var x = pq[0];
+            x = pq[1];
+            x = pq[2];
+            x = pq[3];
 
             string test = pq.PollLowest();
 
