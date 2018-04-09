@@ -94,5 +94,63 @@ namespace CC_Lib
                 streamWriter.WriteLine(stringBuilder.ToString());
             }
         }
+
+        /// <summary>
+        /// Executes the given function with inputs written into the console (only works in console applications). 
+        /// The output is written onto the console.
+        /// If you want to stop, type "esc" into the input.
+        /// </summary>
+        /// <param name="func">The function that will be executed for each input.</param>
+        public static void ExecConsoleInput(Func<string, string> func)
+        {
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (input == null || input.ToLower() == "esc")
+                {
+                    return;
+                }
+                string output = func(input);
+                Console.WriteLine($"\n{output}\n\n");
+            }
+        }
+
+        /// <summary>
+        /// Executes the given function for each line in the input file and writes it to the output file.
+        /// </summary>
+        /// <param name="inputFilePath">The path to the input file. There has to be one input per line in this file.</param>
+        /// <param name="outputFilePath">The path to the file where the outputs will be written to.</param>
+        /// <param name="func">The function that will be executed to convert the input to the output.</param>
+        public static void ExecFileInputWithOutputFile(string inputFilePath, string outputFilePath,
+            Func<string, string> func)
+        {
+            if (!File.Exists(inputFilePath))
+            {
+                throw new ArgumentException("Input File doesn't exist");
+            }
+
+            var builder = new StringBuilder();
+
+            using (var reader = new StreamReader(new FileStream(inputFilePath, FileMode.Open)))
+            {
+                int counter = 1;
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string output = func(line);
+                    builder.AppendLine($"<{counter}>");
+                    builder.AppendLine($"{output}");
+                    builder.AppendLine($"</{counter}>");
+                    builder.AppendLine();
+                    counter++;
+                }
+            }
+
+            using (var writer = new StreamWriter(new FileStream(outputFilePath, FileMode.Create)))
+            {
+                writer.WriteLine(builder.ToString());
+            }
+            
+        }
     }
 }
