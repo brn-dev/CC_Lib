@@ -28,6 +28,25 @@ namespace CC_Lib
             }
         }
 
+        /// <summary>
+        /// Executes the given function for each line in the input file.
+        /// </summary>
+        /// <param name="inputFilePath">The path to the input file. There has to be one input per line in this file.</param>
+        /// <param name="func">The function that will be called for each line in the input file.</param>
+        public static void ExecOnInputFile(string inputFilePath, Action<string> func)
+        {
+            if (!File.Exists(inputFilePath))
+            {
+                throw new ArgumentException("Input Directory doesn't exist");
+            }
+
+            var lines = File.ReadAllLines(inputFilePath);
+            foreach (string line in lines)
+            {
+                func(line);
+            }
+        }
+
 
         /// <summary>
         /// Executes the given function for each file in the given input folder. 
