@@ -4,12 +4,19 @@ using System.Linq;
 
 namespace CC_Lib
 {
-    public enum Types
+    /// <summary>
+    /// Short for Type, used for parsing
+    /// </summary>
+    public enum Ty
     {
-        String,
+        Str,
         Int,
+        Long,
+        Float,
         Double,
-        Long
+        Decimal,
+        TimeSpan,
+        DateTime
     }
 
     public static class Conversion
@@ -40,11 +47,11 @@ namespace CC_Lib
         /// Splits a line at the whitespaces and converts the resulting tokens to the given types
         /// </summary>
         /// <param name="line">The line which will be split to tokens</param>
-        /// <param name="types">The types to which each to will be parsed respectively</param>
+        /// <param name="ty">The types to which each to will be parsed respectively</param>
         /// <returns>The parsed tokens</returns>
-        public static dynamic[] ParseLine(this string line, params Types[] types)
+        public static dynamic[] ParseLine(this string line, params Ty[] ty)
         {
-            return ParseLine(line, DefaultSplitToken, types);
+            return ParseLine(line, DefaultSplitToken, ty);
         }
 
         /// <summary>
@@ -52,37 +59,49 @@ namespace CC_Lib
         /// </summary>
         /// <param name="line">The line which will be split to tokens</param>
         /// <param name="splitToken">The char whith which the line will be split</param>
-        /// <param name="types">The types to which each to will be parsed respectively</param>
+        /// <param name="ty">The types to which each to will be parsed respectively</param>
         /// <returns>The parsed tokens</returns>
-        public static dynamic[] ParseLine(this string line, char splitToken, params Types[] types)
+        public static dynamic[] ParseLine(this string line, char splitToken, params Ty[] ty)
         {
-            return ParseLine(line.Split(splitToken), types);
+            return ParseLine(line.Split(splitToken), ty);
         }
 
         /// <summary>
         /// Uses the tokens to convert the given types
         /// </summary>
         /// <param name="lineTokens">The tokens which will be parsed</param>
-        /// <param name="types">The types to which each to will be parsed respectively</param>
+        /// <param name="ty">The types to which each to will be parsed respectively</param>
         /// <returns>The parsed tokens</returns>
-        public static dynamic[] ParseLine(this string[] lineTokens, params Types[] types)
+        public static dynamic[] ParseLine(this string[] lineTokens, params Ty[] ty)
         {
             var parsedTokens = new dynamic[lineTokens.Length];
             for (int i = 0; i < lineTokens.Length; i++)
             {
-                switch (types[i])
+                switch (ty[i])
                 {
-                    case Types.String:
+                    case Ty.Str:
                         parsedTokens[i] = lineTokens[i];
                         break;
-                    case Types.Int:
+                    case Ty.Int:
                         parsedTokens[i] = int.Parse(lineTokens[i]);
                         break;
-                    case Types.Double:
+                    case Ty.Long:
+                        parsedTokens[i] = long.Parse(lineTokens[i]);
+                        break;
+                    case Ty.Float:
+                        parsedTokens[i] = float.Parse(lineTokens[i]);
+                        break;
+                    case Ty.Double:
                         parsedTokens[i] = double.Parse(lineTokens[i]);
                         break;
-                    case Types.Long:
-                        parsedTokens[i] = long.Parse(lineTokens[i]);
+                    case Ty.Decimal:
+                        parsedTokens[i] = decimal.Parse(lineTokens[i]);
+                        break;
+                    case Ty.DateTime:
+                        parsedTokens[i] = DateTime.Parse(lineTokens[i]);
+                        break;
+                    case Ty.TimeSpan:
+                        parsedTokens[i] = TimeSpan.Parse(lineTokens[i]);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
