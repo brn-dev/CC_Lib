@@ -8,18 +8,41 @@ using MoreLinq;
 namespace Test
 {
 
+    class Test
+    {
+        public Test(string str, int x, double d, DateTime dt, TimeSpan ts)
+        {
+            Str = str;
+            I = x;
+            D = d;
+            Dt = dt;
+            Ts = ts;
+        }
+
+        public string Str { get; set; }
+
+        public int I { get; set; }
+
+        public double D { get; set; }
+
+        public DateTime Dt { get; set; }
+
+        public TimeSpan Ts { get; set; }
+    }
+
     class Program
     {
         private static void Main()
         {
-            
-            "abc 123 123.456 2018-04-26 17:47"
-                .ParseAndDeconstruct(out string str, 
-                                     out int i, 
-                                     out double d, 
-                                     out DateTime dt, 
-                                     out TimeSpan ts);
-            
+
+            var test = "abc 123 123.456 2018-04-26 17:47"
+                .ParseAndDeconstruct(out string str,
+                    out int i,
+                    out double d,
+                    out DateTime dt,
+                    out TimeSpan ts)
+                .Return(x => new Test(str, i, d, dt, ts));
+
         }
 
         private static void DeconstructorGenerator()
