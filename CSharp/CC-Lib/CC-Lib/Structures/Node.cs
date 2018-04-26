@@ -4,11 +4,11 @@ namespace CC_Lib.Structures
 {
     class Node<T> : Identifiable
     {
-        public Node(int id = -1) : this(default(T))
+        public Node(int id = -1) : this(default(T), id)
         {
         }
 
-        public Node(T value, int id = -1) : this(value, new List<Node<T>>())
+        public Node(T value, int id = -1) : this(value, new List<Node<T>>(), id)
         {
         }
 
