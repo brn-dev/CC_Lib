@@ -57,7 +57,7 @@ namespace CC_Lib
         /// <param name="func">The function that converts the lines of the input file (string[]) 
         /// to a single line output (string) [public string doSmth(string[] input) {...}] </param>
         public static void ExecOnInputDirWithOutputDir(string inputDirPath, string outputDirPath,
-            Func<string[], string> func)
+            Func<string[], string[]> func)
         {
             if (!Directory.Exists(inputDirPath))
             {
@@ -72,12 +72,15 @@ namespace CC_Lib
             var files = Directory.GetFiles(inputDirPath);
             foreach (string file in files)
             {
-                string output = func(File.ReadAllLines(file));
+                string[] output = func(File.ReadAllLines(file));
 
                 using (StreamWriter streamWriter =
                     File.CreateText(outputDirPath + "\\" + file.Split('\\').LastOrDefault() + "-output.txt"))
                 {
-                    streamWriter.WriteLine(output);
+                    foreach (string line in output)
+                    {
+                        streamWriter.WriteLine(line);
+                    }
                 }
             }
         }
