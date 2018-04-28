@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Matrix.cs" />
     <Compile Include="Conversion.cs" />
     <Compile Include="InputOutput.cs" />
     <Compile Include="Linq.cs" />

@@ -31,6 +31,44 @@ namespace Test
     {
         private static void Main()
         {
+            var x = new int[,]
+            {
+                {1, 2, 3},
+                {4, 5, 6},
+            };
+            x.VisualizeToConsole();
+
+            var row = x.GetRow(1);
+            var col = x.GetColumn(2);
+
+            var mV = x.MirrorVertically();
+            mV.VisualizeToConsole();
+            var mH = x.MirrorHorizontally();
+            mH.VisualizeToConsole();
+
+            var rcc = x.RotateCounterClockwise();
+            rcc.VisualizeToConsole();
+
+            var rc = x.RotateClockwise();
+            rc.VisualizeToConsole();
+
+            rcc.RotateCounterClockwise().VisualizeToConsole();
+            rc.RotateClockwise().VisualizeToConsole();
+
+            var r180 = x.Rotate180();
+            r180.VisualizeToConsole();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            x.RotateClockwiseTimes(0).VisualizeToConsole();
+            x.RotateClockwiseTimes(1).VisualizeToConsole();
+            x.RotateClockwiseTimes(2).VisualizeToConsole();
+            x.RotateClockwiseTimes(3).VisualizeToConsole();
+            x.RotateClockwiseTimes(4).VisualizeToConsole();
+            x.RotateClockwiseTimes(-1).VisualizeToConsole();
+            x.RotateClockwiseTimes(-2).VisualizeToConsole();
+            x.RotateClockwiseTimes(-3).VisualizeToConsole();
+            x.RotateClockwiseTimes(-4).VisualizeToConsole();
+            Console.ReadLine();
         }
 
         private static void DeconstructorGenerator()
