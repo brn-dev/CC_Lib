@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
 using CC_Lib;
-using MoreLinq;
 
 namespace Test
 {
@@ -34,15 +31,6 @@ namespace Test
     {
         private static void Main()
         {
-
-            var test = "abc 123 123.456 2018-04-26 17:47"
-                .ParseAndDeconstruct(out string str,
-                    out int i,
-                    out double d,
-                    out DateTime dt,
-                    out TimeSpan ts)
-                .Return(x => new Test(str, i, d, dt, ts));
-
         }
 
         private static void DeconstructorGenerator()
