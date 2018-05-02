@@ -354,7 +354,7 @@ namespace CC_Lib
 
         #region AssignEach
 
-        public static void AssignEach<T>(T[,] matrix, Func<T, T> assignmentFunc)
+        public static void AssignEach<T>(this T[,] matrix, Func<T, T> assignmentFunc)
         {
             int height = matrix.GetLength(0);
             int width = matrix.GetLength(1);
@@ -367,7 +367,7 @@ namespace CC_Lib
             }
         }
 
-        public static void AssignEach<T>(T[][] matrix, Func<T, T> assignmentFunc)
+        public static void AssignEach<T>(this T[][] matrix, Func<T, T> assignmentFunc)
         {
             int height = matrix.GetLength(0);
             int width = matrix.GetLength(1);
@@ -380,7 +380,7 @@ namespace CC_Lib
             }
         }
 
-        public static void AssignEach<T>(T[,] matrix, Func<int, int, T, T> assignmentFunc)
+        public static void AssignEach<T>(this T[,] matrix, Func<int, int, T, T> assignmentFunc)
         {
             int height = matrix.GetLength(0);
             int width = matrix.GetLength(1);
@@ -393,7 +393,7 @@ namespace CC_Lib
             }
         }
 
-        public static void AssignEach<T>(T[][] matrix, Func<int, int, T, T> assignmentFunc)
+        public static void AssignEach<T>(this T[][] matrix, Func<int, int, T, T> assignmentFunc)
         {
             int height = matrix.GetLength(0);
             int width = matrix.GetLength(1);
