@@ -57,6 +57,7 @@ namespace CC_Lib
             return copied;
         }
 
+        #region Mirror
         public static T[,] MirrorVertically<T>(this T[,] matrix)
         {
             var mirrored = new T[matrix.GetLength(0), matrix.GetLength(1)];
@@ -86,6 +87,9 @@ namespace CC_Lib
             }
             return mirrored;
         }
+        #endregion
+
+        #region Rotation
 
         public static int[,] RotateCounterClockwise(this int[,] matrix)
         {
@@ -155,10 +159,258 @@ namespace CC_Lib
                     throw new Exception("Shouldn't happen");
             }
         }
+        #endregion
 
+        #region Converting
+
+        public static T[] ToFlat<T>(this T[,] matrix)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            var flatArr = new T[width * height];
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    flatArr[width * row + column] = matrix[row, column];
+                }
+            }
+            return flatArr;
+        }
+
+        public static T[] ToFlat<T>(this T[][] matrix)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            var flatArr = new T[width * height];
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    flatArr[width * row + column] = matrix[row][column];
+                }
+            }
+            return flatArr;
+        }
+
+        public static T[][] ToNested<T>(this T[,] matrix)
+        {
+            int height = matrix.GetLength(0);
+            var nestedArr = new T[height][];
+            for (int row = 0; row < height; row++)
+            {
+                nestedArr[row] = matrix.GetRow(row);
+            }
+            return nestedArr;
+        }
+
+        public static T[,] To2DArray<T>(this T[][] nestedArray)
+        {
+            int height = nestedArray.Length;
+            if (nestedArray.Select(row => row.Length).Distinct().Count() > 1)
+            {
+                throw new ArgumentException("Subarrays of nestedArray must be same size!");
+            }
+            int width = nestedArray[0].Length;
+            var array2D = new T[height, width];
+            for (int rowIndex = 0; rowIndex < height; rowIndex++)
+            {
+                for (int colIndex = 0; colIndex < width; colIndex++)
+                {
+                    array2D[rowIndex, colIndex] = nestedArray[colIndex][rowIndex];
+                }
+            }
+            return array2D;
+        }
+
+        #endregion
+
+        #region ForEach
+        public static void ForEach<T>(this T[,] matrix, Action<T> action)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    action(matrix[row, column]);
+                }
+            }
+        }
+
+        public static bool ForEach<T>(this T[,] matrix, Func<T, bool> func)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    if (!func(matrix[row, column]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+
+
+        public static void ForEach<T>(this T[][] matrix, Action<T> action)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    action(matrix[row][column]);
+                }
+            }
+        }
+
+        public static bool ForEach<T>(this T[][] matrix, Func<T, bool> func)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    if (!func(matrix[row][column]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        #endregion
+
+        #region Enumerate
+
+        public static void Enumerate<T>(this T[,] matrix, Action<int, int, T> action)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    action(row, column, matrix[row, column]);
+                }
+            }
+        }
+
+        public static bool Enumerate<T>(this T[,] matrix, Func<int, int, T, bool> func)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    if (!func(row, column, matrix[row, column]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static void Enumerate<T>(this T[][] matrix, Action<int, int, T> action)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    action(row, column, matrix[row][column]);
+                }
+            }
+        }
+
+        public static bool Enumerate<T>(this T[][] matrix, Func<int, int, T, bool> action)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    if (!action(row, column, matrix[row][column]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        #endregion
+
+        #region AssignEach
+
+        public static void AssignEach<T>(T[,] matrix, Func<T, T> assignmentFunc)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    matrix[row, column] = assignmentFunc(matrix[row, column]);
+                }
+            }
+        }
+
+        public static void AssignEach<T>(T[][] matrix, Func<T, T> assignmentFunc)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    matrix[row][column] = assignmentFunc(matrix[row][column]);
+                }
+            }
+        }
+
+        public static void AssignEach<T>(T[,] matrix, Func<int, int, T, T> assignmentFunc)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    matrix[row, column] = assignmentFunc(row, column, matrix[row, column]);
+                }
+            }
+        }
+
+        public static void AssignEach<T>(T[][] matrix, Func<int, int, T, T> assignmentFunc)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            for (int row = 0; row < height; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    matrix[row][column] = assignmentFunc(row, column, matrix[row][column]);
+                }
+            }
+        }
+        #endregion
+
+        #region Visualize
         public static string Visualize<T>(this T[,] matrix)
         {
-            int maxLength = (from T value in matrix select value.ToString() into str select str.Length).Concat(new[] {0}).Max();
+            int maxLength = (from T value in matrix select value.ToString() into str select str.Length).Concat(new[] { 0 }).Max();
             var output = new StringBuilder();
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
@@ -179,5 +431,6 @@ namespace CC_Lib
         {
             Console.WriteLine(Visualize(matrix));
         }
+        #endregion
     }
 }
