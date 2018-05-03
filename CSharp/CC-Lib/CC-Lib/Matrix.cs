@@ -27,6 +27,25 @@ namespace CC_Lib
             return col;
         }
 
+        public static T[] GetColumn<T>(this T[][] matrix, int colIndex)
+        {
+            if (colIndex < 0)
+            {
+                throw new IndexOutOfRangeException($"colIndex may not be smaller than 0! (colIndex is {colIndex})");
+            }
+
+            var col = new T[matrix.Length];
+            for (int i = 0; i < col.Length; i++)
+            {
+                if (colIndex >= matrix[i].Length)
+                {
+                    throw new IndexOutOfRangeException($"Subarray of matrix at index {i} isn't long enough to get the column index {colIndex} (subarray is {matrix[i].Length} elements long)");
+                }
+                col[i] = matrix[i][colIndex];
+            }
+            return col;
+        }
+
         public static T[] GetRow<T>(this T[,] matrix, int rowIndex)
         {
             if (rowIndex < 0 || rowIndex >= matrix.GetLength(0))
