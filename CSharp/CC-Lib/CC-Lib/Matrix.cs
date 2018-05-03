@@ -437,9 +437,13 @@ namespace CC_Lib
         public static bool Equals<T>(T[,] matrix1, T[,] matrix2)
             where T : IEquatable<T>
         {
+            if (matrix1 == matrix2)
+            {
+                return true;
+            }
             if (matrix1 == null || matrix2 == null)
             {
-                return matrix1 == matrix2;
+                return false;
             }
             if (matrix1.GetLength(0) != matrix2.GetLength(0))
             {
@@ -467,9 +471,13 @@ namespace CC_Lib
         public static bool Equals<T>(T[][] matrix1, T[][] matrix2)
             where T : IEquatable<T>
         {
+            if (matrix1 == matrix2)
+            {
+                return true;
+            }
             if (matrix1 == null || matrix2 == null)
             {
-                return matrix1 == matrix2;
+                return false;
             }
             if (matrix1.Length != matrix2.Length)
             {
