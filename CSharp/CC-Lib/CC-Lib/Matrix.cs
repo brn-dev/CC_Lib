@@ -61,20 +61,39 @@ namespace CC_Lib
             return row;
         }
 
+        #region Copy
         public static T[,] Copy<T>(this T[,] matrix)
         {
-            var copied = new T[matrix.GetLength(0), matrix.GetLength(1)];
+            var copy = new T[matrix.GetLength(0), matrix.GetLength(1)];
 
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    copied[i, j] = matrix[i, j];
+                    copy[i, j] = matrix[i, j];
                 }
             }
 
-            return copied;
+            return copy;
         }
+
+        public static T[][] Copy<T>(this T[][] matrix)
+        {
+            var copy = new T[matrix.Length][];
+
+            for (int rowIndex = 0; rowIndex < matrix.Length; rowIndex++)
+            {
+                copy[rowIndex] = new T[matrix[rowIndex].Length];
+                for (int columnIndex = 0; columnIndex < copy[rowIndex].Length; columnIndex++)
+                {
+                    copy[rowIndex][columnIndex] = matrix[rowIndex][columnIndex];
+                }
+            }
+
+            return copy;
+        }
+        #endregion
+
 
         #region Mirror
         public static T[,] MirrorVertically<T>(this T[,] matrix)
