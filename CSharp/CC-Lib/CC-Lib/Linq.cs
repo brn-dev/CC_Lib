@@ -45,5 +45,13 @@ namespace CC_Lib
             return true;
         }
 
+        public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> func)
+        {
+            foreach (var elem in enumerable)
+            {
+                func(elem);
+            }
+        }
+
     }
 }
