@@ -174,5 +174,28 @@ namespace CC_Lib
             }
             
         }
+
+        public static void ExecLevel(string baseDir, string level, Func<string[], string[]> func)
+        {
+            if (!baseDir.EndsWith(@"\"))
+            {
+                baseDir += @"\";
+            }
+
+            var inputDir = $"{baseDir}input\\{level}";
+            var outputDir = $"{baseDir}output\\{level}";
+
+            if (!Directory.Exists(inputDir))
+            {
+                throw new ArgumentException($"input directory doesn't exist ({inputDir})");
+            }
+
+            if (!Directory.Exists(inputDir))
+            {
+                throw new ArgumentException($"output directory doesn't exist ({outputDir})");
+            }
+
+            ExecOnInputDirWithOutputDir(inputDir, outputDir, func);
+        }
     }
 }
