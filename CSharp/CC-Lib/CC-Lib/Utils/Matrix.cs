@@ -5,7 +5,7 @@ using CC_Lib.Structures.Geometry;
 
 // ReSharper disable FormatStringProblem
 
-namespace CC_Lib
+namespace CC_Lib.Utils
 {
     /// <summary>
     /// Extension methods for 2 dimensional arrays.

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CC_Lib
+namespace CC_Lib.Utils
 {
-    public static class Linq
+    public static class EnumerableIterators
     {
         /// <summary>
         /// Performs the given the given action on each element of the given IEnumerable and also passes the index of the current element 

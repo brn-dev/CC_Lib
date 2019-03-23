@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace CC_Lib
+namespace CC_Lib.Utils
 {
     public static class Conversion
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace CC_Lib
+namespace CC_Lib.Utils
 {
     public static class InputOutput
     {
@@ -11,7 +11,7 @@ namespace CC_Lib
         /// Executes the given action for each file in the given folder.
         /// </summary>
         /// <param name="inputDirPath">The path to the folder</param>
-        /// <param name="func">The fucntion which shall be executed with the input of each file. 
+        /// <param name="func">The function which shall be executed with the input of each file. 
         /// This function has to have one parameter namely a string array - 
         /// representing the content of the input file</param>
         public static void ExecOnInputDir(string inputDirPath, Action<string[]> func)
