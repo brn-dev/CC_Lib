@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CC_Lib.Structures.Geometry
+namespace CC_Lib.Structures.Geometry3D
 {
     public struct Point3 : IComparable<Point3>, IEquatable<Point3>
     {
