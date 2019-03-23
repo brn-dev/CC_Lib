@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using CC_Lib.Structures.Geometry;
+
 // ReSharper disable FormatStringProblem
 
 namespace CC_Lib
@@ -67,6 +69,41 @@ namespace CC_Lib
         {
             return matrix[rowIndex];
         }
+
+        #endregion
+
+        #region GetAt
+
+        public static T GetAt<T>(this T[][] matrix, int r, int c)
+        {
+            return matrix[r][c];
+        }
+
+        public static T GetAt<T>(this T[,] matrix, int r, int c)
+        {
+            return matrix[r, c];
+        }
+
+        public static T GetAt<T>(this T[][] matrix, Point3 point)
+        {
+            return matrix[(int)point.Y][(int)point.X];
+        }
+
+        public static T GetAt<T>(this T[,] matrix, Point3 point)
+        {
+            return matrix[(int)point.Y,(int)point.X];
+        }
+
+        public static T GetAt<T>(this T[][] matrix, Tuple<int, int> tuple)
+        {
+            return matrix[tuple.Item1][tuple.Item2];
+        }
+
+        public static T GetAt<T>(this T[,] matrix, Tuple<int, int> tuple)
+        {
+            return matrix[tuple.Item1,tuple.Item2];
+        }
+
 
         #endregion
 
