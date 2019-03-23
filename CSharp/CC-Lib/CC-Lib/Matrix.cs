@@ -12,6 +12,8 @@ namespace CC_Lib
     public static class Matrix
     {
 
+        #region GetColumn & GetRow
+
         public static T[] GetColumn<T>(this T[,] matrix, int colIndex)
         {
             if (colIndex < 0 || colIndex >= matrix.GetLength(1))
@@ -61,6 +63,13 @@ namespace CC_Lib
             return row;
         }
 
+        public static T[] GetRow<T>(this T[][] matrix, int rowIndex)
+        {
+            return matrix[rowIndex];
+        }
+
+        #endregion
+
         #region Copy
         public static T[,] Copy<T>(this T[,] matrix)
         {
@@ -93,7 +102,6 @@ namespace CC_Lib
             return copy;
         }
         #endregion
-
 
         #region Mirror
         public static T[,] MirrorVertically<T>(this T[,] matrix)
@@ -603,5 +611,6 @@ namespace CC_Lib
         }
 
         #endregion
+
     }
 }

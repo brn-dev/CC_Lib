@@ -31,7 +31,7 @@ namespace CC_Lib.Structures
         /// <summary>
         /// Returns the node at the given index (also negative index allowed).
         /// </summary>
-        private LinkedListNode<KeyValuePair<TP, TV>> GetNodeAt(int index)
+        public LinkedListNode<KeyValuePair<TP, TV>> GetNodeAt(int index)
         {
             int count = Count;
             if (index < -count || index >= count)
