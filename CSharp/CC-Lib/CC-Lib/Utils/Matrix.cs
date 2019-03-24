@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using CC_Lib.Structures.Geometry;
+using CC_Lib.Structures.Geometry2D;
+using CC_Lib.Structures.Geometry3D;
 
 // ReSharper disable FormatStringProblem
 
@@ -84,14 +85,24 @@ namespace CC_Lib.Utils
             return matrix[r, c];
         }
 
-        public static T GetAt<T>(this T[][] matrix, Point3 point)
+        public static T GetAt<T>(this T[][] matrix, Vector3 point)
         {
             return matrix[(int)point.Y][(int)point.X];
         }
 
-        public static T GetAt<T>(this T[,] matrix, Point3 point)
+        public static T GetAt<T>(this T[,] matrix, Vector3 point)
         {
             return matrix[(int)point.Y,(int)point.X];
+        }
+
+        public static T GetAt<T>(this T[][] matrix, Vector2 point)
+        {
+            return matrix[(int)point.Y][(int)point.X];
+        }
+
+        public static T GetAt<T>(this T[,] matrix, Vector2 point)
+        {
+            return matrix[(int)point.Y, (int)point.X];
         }
 
         public static T GetAt<T>(this T[][] matrix, Tuple<int, int> tuple)
