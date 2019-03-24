@@ -14,11 +14,11 @@ namespace CC_Lib.Structures.Geometry3D
 
         #region Properties
 
-        public double X { get; }
+        public double X { get; set; }
 
-        public double Y { get; }
+        public double Y { get; set; }
 
-        public double Z { get; }
+        public double Z { get; set; }
 
         public double SquaredLength => X * X + Y * Y + Z * Z;
 

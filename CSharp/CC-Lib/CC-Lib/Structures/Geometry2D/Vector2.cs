@@ -13,9 +13,9 @@ namespace CC_Lib.Structures.Geometry2D
 
         #region Properties
 
-        public double X { get; }
+        public double X { get; set; }
 
-        public double Y { get; }
+        public double Y { get; set; }
 
         public double SquaredLength => X * X + Y * Y;
 
@@ -116,6 +116,28 @@ namespace CC_Lib.Structures.Geometry2D
         }
 
         #endregion
+
+        #region defaults
+
+        public static Vector2 Up { get; } = new Vector2(0, 1);
+
+        public static Vector2 Down { get; } = new Vector2(0, -1);
+
+        public static Vector2 Right { get; } = new Vector2(1, 0);
+
+        public static Vector2 Left { get; } = new Vector2(-1, 0);
+
+        public static Vector2 Zero { get; } = new Vector2(0, 0);
+
+        #endregion
+
+        #region builders
+
+        public static Vector2 FromDirection(Direction direction)
+        {
+            return Directions.GetVector(direction);
+        }
+#endregion
 
     }
 }
