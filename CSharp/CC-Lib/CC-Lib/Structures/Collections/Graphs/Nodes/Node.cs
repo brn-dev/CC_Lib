@@ -12,13 +12,13 @@ namespace CC_Lib.Structures.Collections.Graphs.Nodes
         {
         }
 
-        public Node(T value, List<Node<T>> neighbors, int id = -1) : base(id)
+        public Node(T value, IList<Node<T>> children, int id = -1) : base(id)
         {
-            Neighbors = neighbors;
+            Children = children;
             Value = value;
         }
 
-        public List<Node<T>> Neighbors { get; set; }
+        public IList<Node<T>> Children { get; set; }
         public T Value { get; set; }
     }
 }

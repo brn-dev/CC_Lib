@@ -12,13 +12,13 @@ namespace CC_Lib.Structures.Collections.Graphs.Nodes
         {
         }
 
-        public WeightedNode(T value, List<(Node<T> node, double weight)> neighbors, int id = -1) : base(id)
+        public WeightedNode(T value, IList<(Node<T> node, double weight)> children, int id = -1) : base(id)
         {
-            Neighbors = neighbors;
+            Children = children;
             Value = value;
         }
 
-        public List<(Node<T> node, double weight)> Neighbors { get; set; }
+        public IList<(Node<T> node, double weight)> Children { get; set; }
         public T Value { get; set; }
     }
 }
