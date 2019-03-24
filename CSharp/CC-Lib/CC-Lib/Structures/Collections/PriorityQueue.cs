@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CC_Lib.Structures
+namespace CC_Lib.Structures.Collections
 {
     /// <summary>
     /// A queue which orders its elements by the given priority (ascending)

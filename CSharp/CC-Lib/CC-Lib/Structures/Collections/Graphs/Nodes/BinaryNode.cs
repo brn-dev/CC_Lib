@@ -1,4 +1,4 @@
-﻿namespace CC_Lib.Structures
+﻿namespace CC_Lib.Structures.Collections.Graphs.Nodes
 {
     class BinaryNode<T>
     {

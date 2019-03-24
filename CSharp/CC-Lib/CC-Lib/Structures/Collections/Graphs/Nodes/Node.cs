@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CC_Lib.Structures
+namespace CC_Lib.Structures.Collections.Graphs.Nodes
 {
     class Node<T> : Identifiable
     {
