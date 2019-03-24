@@ -76,6 +76,11 @@ namespace CC_Lib.Structures.Geometry2D
 
         #region methods
 
+        public double DistanceTo(Vector2 other)
+        {
+            return (this - other).Length;
+        }
+
         #endregion
 
         #region operators

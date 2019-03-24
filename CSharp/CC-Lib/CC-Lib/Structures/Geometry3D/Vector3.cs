@@ -85,6 +85,11 @@ namespace CC_Lib.Structures.Geometry3D
             return new Vector3(Y * other.Z - Z * other.Y, Z * other.X - X * other.Z, X * other.Y - Y - other.X);
         }
 
+        public double DistanceTo(Vector3 other)
+        {
+            return (this - other).Length;
+        }
+
         #endregion
 
         #region operators
