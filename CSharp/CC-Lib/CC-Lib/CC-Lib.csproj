@@ -65,6 +65,7 @@
     <Compile Include="Structures\Geometry2D\Vector2.cs" />
     <Compile Include="ExtensionMethods\MatrixExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Structures\Trees\BinaryTree.cs" />
     <Compile Include="Utils\InputOutputUtils.cs" />
     <Compile Include="ExtensionMethods\EnumerableExtensions.Iterators.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,9 +76,7 @@
     <Compile Include="Structures\Collections\PriorityQueue.cs" />
     <Compile Include="Structures\Nodes\WeightedNode.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Structures\Graphs\Trees\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
