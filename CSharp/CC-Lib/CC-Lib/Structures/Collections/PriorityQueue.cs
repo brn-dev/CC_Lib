@@ -14,11 +14,11 @@ namespace CC_Lib.Structures.Collections
         where TP : IComparable<TP>
     {
 
-        private readonly LinkedList<KeyValuePair<TP, TV>> _list;
+        private readonly LinkedList<(TP priority, TV value)> _list;
 
         public PriorityQueue()
         {
-            _list = new LinkedList<KeyValuePair<TP, TV>>();
+            _list = new LinkedList<(TP priority, TV value)>();
         }
 
         public int Count => _list.Count;
@@ -26,12 +26,12 @@ namespace CC_Lib.Structures.Collections
         /// <summary>
         /// Returns the value of the element at the given index
         /// </summary>
-        public TV this[int index] => GetNodeAt(index).Value.Value;
+        public TV this[int index] => GetNodeAt(index).Value.value;
 
         /// <summary>
         /// Returns the node at the given index (also negative index allowed).
         /// </summary>
-        public LinkedListNode<KeyValuePair<TP, TV>> GetNodeAt(int index)
+        private LinkedListNode<(TP priority, TV value)> GetNodeAt(int index)
         {
             int count = Count;
             if (index < -count || index >= count)
@@ -79,16 +79,16 @@ namespace CC_Lib.Structures.Collections
 
             while (node != null)
             {
-                if (node.Value.Key.CompareTo(priority) > 0)
+                if (node.Value.priority.CompareTo(priority) > 0)
                 {
-                    _list.AddBefore(node, new KeyValuePair<TP, TV>(priority, value));
+                    _list.AddBefore(node, (priority, value));
                     return insertIndex;
                 }
                 node = node.Next;
                 insertIndex++;
             }
 
-            _list.AddLast(new KeyValuePair<TP, TV>(priority, value));
+            _list.AddLast((priority, value));
             return insertIndex + 1;
         }
 
@@ -98,7 +98,7 @@ namespace CC_Lib.Structures.Collections
         public TV PeekLowest()
         {
             var first = _list.First;
-            return first != null ? first.Value.Value : default(TV);
+            return first != null ? first.Value.value : default(TV);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace CC_Lib.Structures.Collections
                 return default(TV);
             }
             _list.RemoveFirst();
-            return first.Value.Value;
+            return first.Value.value;
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace CC_Lib.Structures.Collections
         public TV PeekHighest()
         {
             var last = _list.Last;
-            return last != null ? last.Value.Value : default(TV);
+            return last != null ? last.Value.value : default(TV);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace CC_Lib.Structures.Collections
                 return default(TV);
             }
             _list.RemoveLast();
-            return last.Value.Value;
+            return last.Value.value;
         }
 
         /// <summary>
@@ -143,18 +143,39 @@ namespace CC_Lib.Structures.Collections
         /// </summary>
         public void RemoveAt(int index)
         {
-            int count = Count;
+            var count = Count;
             if (index < -count || index >= count)
             {
                 throw new IndexOutOfRangeException();
             }
             _list.Remove(GetNodeAt(index));
+        }
 
+        public void UpdatePriority(TV value, TP newPriority)
+        {
+            if (!(value is IEquatable<TV> eq))
+            {
+                throw new NotSupportedException("This method is only supported for value types which implement IEquatable");
+            }
+            var node = _list.First;
+            while (node != null && !eq.Equals(node.Value.value))
+            {
+                node = node.Next;
+            }
+
+            if (node is null)
+            {
+                return;
+            }
+
+            _list.Remove(node);
+
+            Add(value, newPriority);
         }
 
         public IEnumerator<TV> GetEnumerator()
         {
-            return _list.Select(x => x.Value).GetEnumerator();
+            return _list.Select(x => x.value).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
