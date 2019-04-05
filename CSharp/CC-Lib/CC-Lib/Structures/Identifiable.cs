@@ -2,7 +2,7 @@
 
 namespace CC_Lib.Structures
 {
-    class Identifiable : IEquatable<Identifiable>
+    public class Identifiable : IEquatable<Identifiable>
     {
         public Identifiable(int id)
         {
