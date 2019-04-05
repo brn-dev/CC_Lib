@@ -90,6 +90,37 @@ namespace CC_Lib.Structures.Geometry3D
             return (this - other).Length;
         }
 
+        public bool IsInBounds(Vector3 bounds)
+        {
+            return X >= 0 &&
+                   Y >= 0 &&
+                   Z >= 0 &&
+                   X < bounds.X &&
+                   Y < bounds.Y &&
+                   Z < bounds.Z;
+        }
+
+        public bool IsInBounds(Vector3 p1, Vector3 p2)
+        {
+            if (p1.X > p2.X || p1.Y > p2.Y || p1.Z > p2.Z)
+            {
+                throw new ArgumentException($"Components of p1 ({p1}) must be smaller than those of p2 ({p2})");
+            }
+            return X >= p1.X &&
+                   Y >= p1.Y &&
+                   Z >= p1.Z &&
+                   X < p2.X &&
+                   Y < p2.Y &&
+                   Z < p2.Z;
+        }
+
+        public void Deconstruct(out double x, out double y, out double z)
+        {
+            x = X;
+            y = Y;
+            z = Z;
+        }
+
         #endregion
 
         #region operators

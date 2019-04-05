@@ -1,5 +1,6 @@
 ﻿using System;
 using CC_Lib.Structures.Geometry3D;
+using CC_Lib.Structures.Graphs;
 
 namespace CC_Lib.Structures.Geometry2D
 {
@@ -11,7 +12,7 @@ namespace CC_Lib.Structures.Geometry2D
             Y = y;
         }
 
-        #region Properties
+        #region properties
 
         public double X { get; set; }
 
@@ -79,6 +80,32 @@ namespace CC_Lib.Structures.Geometry2D
         public double DistanceTo(Vector2 other)
         {
             return (this - other).Length;
+        }
+
+        public bool IsInBounds(Vector2 bounds)
+        {
+            return X >= 0 &&
+                   Y >= 0 &&
+                   X < bounds.X &&
+                   Y < bounds.Y;
+        }
+
+        public bool IsInBounds(Vector2 p1, Vector2 p2)
+        {
+            if (p1.X > p2.X || p1.Y > p2.Y)
+            {
+                throw new ArgumentException($"Components of p1 ({p1}) must be smaller than those of p2 ({p2})");
+            }
+            return X >= p1.X &&
+                   Y >= p1.Y &&
+                   X < p2.X &&
+                   Y < p2.Y;
+        }
+
+        public void Deconstruct(out double x, out double y)
+        {
+            x = X;
+            y = Y;
         }
 
         #endregion
