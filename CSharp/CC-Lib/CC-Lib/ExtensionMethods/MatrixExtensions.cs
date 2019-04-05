@@ -6,13 +6,13 @@ using CC_Lib.Structures.Geometry3D;
 
 // ReSharper disable FormatStringProblem
 
-namespace CC_Lib.Utils
+namespace CC_Lib.ExtensionMethods
 {
     /// <summary>
     /// Extension methods for 2 dimensional arrays.
     /// All functions assume that the first index is the y coordinate (the row - starting from the top) and the second index is the x coordinate (the column) 
     /// </summary>
-    public static class Matrix
+    public static class MatrixExtensions
     {
 
         #region GetColumn & GetRow

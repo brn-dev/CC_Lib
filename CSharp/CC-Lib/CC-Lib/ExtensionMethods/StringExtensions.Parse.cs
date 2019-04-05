@@ -2,39 +2,13 @@
 using System.Globalization;
 using System.Linq;
 
-namespace CC_Lib.Utils
+namespace CC_Lib.ExtensionMethods
 {
-    public static class Conversion
+    public static partial class StringExtensions
     {
-        private const char DefaultSplitToken = ' ';
         private static readonly CultureInfo NumberParsingCulture = new CultureInfo("en");
         private static readonly CultureInfo DateParsingCulture = new CultureInfo("en");
         private static readonly CultureInfo TimeParsingCulture = new CultureInfo("en");
-
-        public static string[] ToTokens(this string str, char splitToken = DefaultSplitToken)
-        {
-            return str.Split(splitToken);
-        }
-
-        public static int[] ToIntTokens(this string[] strings)
-        {
-            return strings.Select(int.Parse).ToArray();
-        }
-
-        public static int[] ToIntTokens(this string str, char splitToken = DefaultSplitToken)
-        {
-            return str.ToTokens(splitToken).ToIntTokens();
-        }
-
-        public static double[] ToDoubleTokens(this string[] strings)
-        {
-            return strings.Select(double.Parse).ToArray();
-        }
-
-        public static double[] ToDoubleTokens(this string str, char splitToken = DefaultSplitToken)
-        {
-            return str.ToTokens(splitToken).ToDoubleTokens();
-        }
 
         /// <summary>
         /// Parses the given string to the given type
@@ -646,5 +620,4 @@ namespace CC_Lib.Utils
         }
         #endregion
     }
-
 }
