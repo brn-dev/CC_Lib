@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,21 +43,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\GraphAlgorithms.AStar.cs" />
+    <Compile Include="Algorithms\GraphAlgorithms.Dijkstra.cs" />
+    <Compile Include="Algorithms\Temp.cs" />
+    <Compile Include="ExtensionMethods\EnumerableExtensions.cs" />
+    <Compile Include="ExtensionMethods\GraphExtensions.cs" />
+    <Compile Include="ExtensionMethods\StringExtensions.Parse.cs" />
+    <Compile Include="ExtensionMethods\StringExtensions.Tokenizers.cs" />
+    <Compile Include="Structures\Collections\KeyExistsException.cs" />
+    <Compile Include="Structures\Graphs\CoordinateGraph.cs" />
+    <Compile Include="Structures\Graphs\Graph.cs" />
+    <Compile Include="Structures\Graphs\GraphDirectionalMode.cs" />
+    <Compile Include="Structures\Graphs\GraphNode.cs" />
+    <Compile Include="Structures\Graphs\IdGraph.cs" />
+    <Compile Include="Structures\Graphs\IReadOnlyGraph.cs" />
+    <Compile Include="Structures\Nodes\BiDirectionalNode.cs" />
+    <Compile Include="Structures\Nodes\BiDirectionalWeightedNode.cs" />
+    <Compile Include="Structures\Graphs\SimpleGraph.cs" />
     <Compile Include="Structures\Geometry2D\Directions.cs" />
     <Compile Include="Structures\Geometry2D\DirectionMover.cs" />
     <Compile Include="Structures\Geometry2D\Vector2.cs" />
-    <Compile Include="Utils\Matrix.cs" />
-    <Compile Include="Utils\Conversion.cs" />
-    <Compile Include="Utils\InputOutput.cs" />
-    <Compile Include="Utils\EnumerableIterators.cs" />
+    <Compile Include="ExtensionMethods\MatrixExtensions.cs" />
+    <Compile Include="ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Utils\InputOutputUtils.cs" />
+    <Compile Include="ExtensionMethods\EnumerableExtensions.Iterators.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structures\BinaryNode.cs" />
+    <Compile Include="Structures\Nodes\BinaryNode.cs" />
     <Compile Include="Structures\Identifiable.cs" />
-    <Compile Include="Structures\Node.cs" />
+    <Compile Include="Structures\Nodes\Node.cs" />
     <Compile Include="Structures\Geometry3D\Vector3.cs" />
-    <Compile Include="Structures\PriorityQueue.cs" />
-    <Compile Include="Structures\WeightedNode.cs" />
+    <Compile Include="Structures\Collections\PriorityQueue.cs" />
+    <Compile Include="Structures\Nodes\WeightedNode.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Structures\Graphs\Trees\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
