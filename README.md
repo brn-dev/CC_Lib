@@ -3,4 +3,4 @@
 This repository contains a collection of functions, structures and algorithms which could be useful in a conding contest. 
 
 Languages:
-- [C#](https://github.com/brn-dev/CC_Lib/tree/master/CSharp/CC-Lib)
+- [C#](https://github.com/brn-dev/CC_Lib/tree/master/CSharp/CC-Lib) (Follow the link for further information)
