@@ -6,7 +6,7 @@ namespace CC_Lib.ExtensionMethods
 {
     public static class GraphExtensions
     {
-        public static string Visualize<TK, TV>(this IReadOnlyGraph<TK, TV> graph)
+        public static string Visualize<TK, TV>(this IReadableGraph<TK, TV> graph)
         {
             var sb = "";
 
@@ -19,7 +19,7 @@ namespace CC_Lib.ExtensionMethods
             return sb;
         }
 
-        public static void VisualizeToConsole<TK, TV>(this IReadOnlyGraph<TK, TV> graph)
+        public static void VisualizeToConsole<TK, TV>(this IReadableGraph<TK, TV> graph)
         {
             Console.WriteLine(graph.Visualize());
         }
