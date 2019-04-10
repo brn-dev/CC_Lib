@@ -47,9 +47,10 @@
     <Compile Include="Algorithms\GraphAlgorithms.Dijkstra.cs" />
     <Compile Include="Algorithms\Temp.cs" />
     <Compile Include="ExtensionMethods\EnumerableExtensions.cs" />
+    <Compile Include="ExtensionMethods\EnumerableExtensions.Iterate.cs" />
     <Compile Include="ExtensionMethods\GraphExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.Parse.cs" />
-    <Compile Include="ExtensionMethods\StringExtensions.Tokenizers.cs" />
+    <Compile Include="ExtensionMethods\StringExtensions.Tokenize.cs" />
     <Compile Include="Structures\Collections\KeyExistsException.cs" />
     <Compile Include="Structures\Graphs\CoordinateGraph.cs" />
     <Compile Include="Structures\Graphs\Graph.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Structures\Trees\BinaryTree.cs" />
     <Compile Include="Utils\InputOutputUtils.cs" />
-    <Compile Include="ExtensionMethods\EnumerableExtensions.Iterators.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structures\Nodes\BinaryNode.cs" />
     <Compile Include="Structures\Identifiable.cs" />
