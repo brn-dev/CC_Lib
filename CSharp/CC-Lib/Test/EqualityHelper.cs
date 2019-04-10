@@ -2,7 +2,7 @@
 
 namespace Test
 {
-    class Equality
+    internal class EqualityHelper
     {
         public static bool ArrayEquals<T>(T[] ar1, T[] ar2)
         {

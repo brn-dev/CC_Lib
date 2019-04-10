@@ -1,5 +1,4 @@
-﻿using CC_Lib;
-using CC_Lib.ExtensionMethods;
+﻿using CC_Lib.ExtensionMethods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -38,27 +37,27 @@ namespace Test
         [TestMethod]
         public void MatrixGetColumnTest()
         {
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 1, 5, 9 }, _testMatrix.GetColumn(0)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 2, 6, 10 }, _testMatrix.GetColumn(1)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 3, 7, 11 }, _testMatrix.GetColumn(2)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 4, 8, 12 }, _testMatrix.GetColumn(3)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 1, 5, 9 }, _testMatrix.GetColumn(0)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 2, 6, 10 }, _testMatrix.GetColumn(1)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 3, 7, 11 }, _testMatrix.GetColumn(2)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 4, 8, 12 }, _testMatrix.GetColumn(3)));
         }
 
         [TestMethod]
         public void Array2DGetColumnTest()
         {
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 1, 5, 9 }, _testArray2D.GetColumn(0)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 2, 6, 10 }, _testArray2D.GetColumn(1)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 3, 7, 11 }, _testArray2D.GetColumn(2)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 4, 8, 12 }, _testArray2D.GetColumn(3)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 1, 5, 9 }, _testArray2D.GetColumn(0)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 2, 6, 10 }, _testArray2D.GetColumn(1)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 3, 7, 11 }, _testArray2D.GetColumn(2)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 4, 8, 12 }, _testArray2D.GetColumn(3)));
         }
 
         [TestMethod]
         public void GetRowTest()
         {
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 1, 2, 3, 4 }, _testMatrix.GetRow(0)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 5, 6, 7, 8 }, _testMatrix.GetRow(1)));
-            Assert.IsTrue(Equality.ArrayEquals(new[] { 9, 10, 11, 12 }, _testMatrix.GetRow(2)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 1, 2, 3, 4 }, _testMatrix.GetRow(0)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 5, 6, 7, 8 }, _testMatrix.GetRow(1)));
+            Assert.IsTrue(EqualityHelper.ArrayEquals(new[] { 9, 10, 11, 12 }, _testMatrix.GetRow(2)));
         }
 
         [TestMethod]
@@ -69,7 +68,7 @@ namespace Test
             _emptyMatrix.Copy(); // should work with empty matrix
 
             Assert.IsFalse(ReferenceEquals(copied, _testMatrix), "Copied and base matrix shouldn't be same object");
-            Assert.IsTrue(Equality.MatrixEquals(copied, _testMatrix), "Copied and base matrix should be equal");
+            Assert.IsTrue(EqualityHelper.MatrixEquals(copied, _testMatrix), "Copied and base matrix should be equal");
         }
 
         [TestMethod]
@@ -80,7 +79,7 @@ namespace Test
             _emptyArray2D.Copy(); // should work with empty 2D-array
 
             Assert.IsFalse(ReferenceEquals(copied, _testArray2D), "Copied and base 2D-array shouldn't be same object");
-            Assert.IsTrue(Equality.Array2DEquals(copied, _testArray2D), "Copied and base 2D-array should be equal");
+            Assert.IsTrue(EqualityHelper.Array2DEquals(copied, _testArray2D), "Copied and base 2D-array should be equal");
         }
 
         [TestMethod]
@@ -98,7 +97,7 @@ namespace Test
             _emptyMatrix.MirrorVertically(); // should work with empty matrix
 
             Assert.IsFalse(ReferenceEquals(expectedMirror, mirrored), "Mirrored and base matrix shouldn't be same object");
-            Assert.IsTrue(Equality.MatrixEquals(expectedMirror, mirrored), "Should vertically mirror correctly");
+            Assert.IsTrue(EqualityHelper.MatrixEquals(expectedMirror, mirrored), "Should vertically mirror correctly");
         }
 
         [TestMethod]
@@ -116,7 +115,7 @@ namespace Test
             _emptyMatrix.MirrorHorizontally(); // should work with empty matrix
 
             Assert.IsFalse(ReferenceEquals(expectedMirror, mirrored), "Mirrored and base matrix shouldn't be same object");
-            Assert.IsTrue(Equality.MatrixEquals(expectedMirror, mirrored), "Should horizontally mirror correctly");
+            Assert.IsTrue(EqualityHelper.MatrixEquals(expectedMirror, mirrored), "Should horizontally mirror correctly");
         }
 
         [TestMethod]
@@ -135,7 +134,7 @@ namespace Test
             _emptyMatrix.RotateClockwise();
 
             Assert.IsFalse(ReferenceEquals(_testMatrix, rotated), "Rotated and base matrix shouldn't be same object");
-            Assert.IsTrue(Equality.MatrixEquals(expected, rotated), "Should clockwise rotate correctly");
+            Assert.IsTrue(EqualityHelper.MatrixEquals(expected, rotated), "Should clockwise rotate correctly");
         }
 
         [TestMethod]
@@ -155,7 +154,7 @@ namespace Test
             _emptyMatrix.RotateCounterClockwise();
 
             Assert.IsFalse(ReferenceEquals(_testMatrix, rotated), "Rotated and base matrix shouldn't be same object");
-            Assert.IsTrue(Equality.MatrixEquals(expected, rotated), "Should counter-clockwise rotate correctly");
+            Assert.IsTrue(EqualityHelper.MatrixEquals(expected, rotated), "Should counter-clockwise rotate correctly");
         }
 
     }
