@@ -24,6 +24,12 @@ namespace CC_Lib.ExtensionMethods
         public static (T, T[]) HeadTail<T>(this IEnumerable<T> enumerable)
         {
             var arr = enumerable as T[] ?? enumerable.ToArray();
+
+            if (typeof(T).IsValueType && arr.Length == 0)
+            {
+                throw new ArgumentException("The value-type enumerable needs to have at least one element");
+            }
+
             var count = arr.Length;
             switch (count)
             {
@@ -40,24 +46,7 @@ namespace CC_Lib.ExtensionMethods
 
         public static (T, T[]) HeadTail<T>(this IEnumerable<T> enumerable, out T head, out T[] tail)
         {
-            var arr = enumerable as T[] ?? enumerable.ToArray();
-            var count = arr.Length;
-            switch (count)
-            {
-                case 0:
-                    head = default(T);
-                    tail = new T[0];
-                    break;
-                case 1:
-                    head = arr[0];
-                    tail = new T[0];
-                    break;
-                default:
-                    head = arr[0];
-                    tail = arr.SubArray(1);
-                    break;
-            }
-
+            (head, tail) = HeadTail(enumerable);
             return (head, tail);
         }
 
