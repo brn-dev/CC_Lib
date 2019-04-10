@@ -91,7 +91,7 @@ Node with two children.
 
 ## Trees
 ### BinaryTree
-Standard implementation of a binary tree.
+Standard implementation of a binary tree. Can be used as a sorted list.
 
 # Utils
 ### InputOutputUtils
