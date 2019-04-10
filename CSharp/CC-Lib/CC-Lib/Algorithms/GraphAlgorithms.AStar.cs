@@ -9,7 +9,7 @@ namespace CC_Lib.Algorithms
 {
     public static partial class GraphAlgorithms
     {
-        public delegate double HeuristicFunction<TK, TV>(IReadOnlyGraph<TK, TV> graph, GraphNode<TK, TV> from, GraphNode<TK, TV> to)
+        public delegate double HeuristicFunction<TK, TV>(IReadableGraph<TK, TV> graph, GraphNode<TK, TV> from, GraphNode<TK, TV> to)
             where TK : IEquatable<TK>;
 
         private static IEnumerable<GraphNode<TK, TV>> ReconstructPath<TK, TV>(
@@ -29,7 +29,7 @@ namespace CC_Lib.Algorithms
         }
 
         public static IEnumerable<GraphNode<TK, TV>> AStar<TK, TV>(
-            this IReadOnlyGraph<TK, TV> graph, 
+            this IReadableGraph<TK, TV> graph, 
             TK from, 
             TK to, 
             HeuristicFunction<TK, TV> heuristicFunction

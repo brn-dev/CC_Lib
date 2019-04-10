@@ -7,7 +7,7 @@ namespace CC_Lib.Algorithms
 {
     public static partial class GraphAlgorithms
     {
-        public static IEnumerable<GraphNode<TK, TV>> Dijkstra<TK, TV>(this IReadOnlyGraph<TK, TV> graph, TK from, TK to)
+        public static IEnumerable<GraphNode<TK, TV>> Dijkstra<TK, TV>(this IReadableGraph<TK, TV> graph, TK from, TK to)
             where TK : IEquatable<TK>
         {
             if (graph[from] is null)

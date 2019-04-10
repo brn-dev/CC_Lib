@@ -2,7 +2,7 @@
 
 namespace CC_Lib.Structures.Graphs
 {
-    public interface IReadOnlyGraph<TK, TV>
+    public interface IReadableGraph<TK, TV>
     {
         IEnumerable<GraphNode<TK, TV>> Nodes { get; }
 

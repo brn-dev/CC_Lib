@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CC_Lib.Structures.Graphs
 {
-    public abstract class Graph<TK, TV> : IReadOnlyGraph<TK, TV>
+    public abstract class Graph<TK, TV> : IReadableGraph<TK, TV>
         where TK : IEquatable<TK>
     {
         public double DefaultWeight { get; set; }

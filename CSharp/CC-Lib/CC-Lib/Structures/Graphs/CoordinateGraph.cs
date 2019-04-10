@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CC_Lib.Structures.Graphs
 {
-    public class CoordinateGraph : IReadOnlyGraph<Vector2, double>
+    public class CoordinateGraph : IReadableGraph<Vector2, double>
     {
         public int Width { get; }
         public int Height { get; }
