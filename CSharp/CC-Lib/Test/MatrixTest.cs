@@ -1,4 +1,5 @@
 ﻿using CC_Lib;
+using CC_Lib.ExtensionMethods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
