@@ -3,6 +3,10 @@
 
     public class DirectionMover
     {
+        public DirectionMover() : this(new Vector2())
+        {
+        }
+
         public DirectionMover(Vector2 position, Direction direction = Direction.Up)
         {
             Position = position;
