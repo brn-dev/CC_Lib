@@ -56,7 +56,7 @@
     <Compile Include="Structures\Graphs\GraphDirectionalMode.cs" />
     <Compile Include="Structures\Graphs\GraphNode.cs" />
     <Compile Include="Structures\Graphs\IdGraph.cs" />
-    <Compile Include="Structures\Graphs\IReadOnlyGraph.cs" />
+    <Compile Include="Structures\Graphs\IReadableGraph.cs" />
     <Compile Include="Structures\Nodes\BiDirectionalNode.cs" />
     <Compile Include="Structures\Nodes\BiDirectionalWeightedNode.cs" />
     <Compile Include="Structures\Graphs\SimpleGraph.cs" />
