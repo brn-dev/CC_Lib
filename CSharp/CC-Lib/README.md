@@ -32,6 +32,7 @@ Iterate:
 - ToFlat, ToNested, To2DArray
 - ForEach
 - Enumerate
+- All
 - AssignEach
 - Visualize, VisualizeToConsole
 - Equals
