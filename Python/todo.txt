@@ -1,1 +1,3 @@
-Geometry2d: shapes overlap, distance between shapes,. ..
+Geometry2d: shapes overlap, distance between shapes,. .. (shapely)
+
+Gridworld + mover

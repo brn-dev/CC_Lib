@@ -5,13 +5,13 @@ from typing import Union, overload
 IntOrFloat = Union[int, float]
 
 
-DIRECTIONS_INCL_DIAGONAL = (
+GRID_DIRECTIONS_INCL_DIAGONAL = (
     (-1,  1), (0,  1), (1,  1),
     (-1,  0),          (1,  0),
     (-1, -1), (0, -1), (1, -1)
 )
 
-DIRECTIONS_EXCL_DIAGONAL = (
+GRID_DIRECTIONS_EXCL_DIAGONAL = (
               (0,  1),
     (-1,  0),          (1,  0),
               (0, -1)
@@ -19,7 +19,7 @@ DIRECTIONS_EXCL_DIAGONAL = (
 
 
 def get_neighbors(x: int, y: int, diagonal=True) -> list[tuple[int, int]]:
-    directions = DIRECTIONS_INCL_DIAGONAL if diagonal else DIRECTIONS_INCL_DIAGONAL
+    directions = GRID_DIRECTIONS_INCL_DIAGONAL if diagonal else GRID_DIRECTIONS_INCL_DIAGONAL
     return [
         (x + dx, y + dy)
         for dx, dy
@@ -54,17 +54,25 @@ def manhattan_distance_between(x1: float, y1: float, x2: float, y2: float) -> fl
     return abs(x1 - x2) + abs(y1 - y2)
 
 
-@dataclass
+@dataclass(frozen=True)
 class Point2i:
     x: int
     y: int
 
-    def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
+    def __add__(self, other: 'Point2i'):
+        return Point2i(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other: 'Point2i'):
+        return Point2i(self.x - other.x, self.y - other.y)
+
+    def __str__(self):
+        return f'({self.x}, {self.y})'
+
+    def __repr__(self):
+        return self.__str__()
 
     def get_neighbors(self, diagonal=True) -> list['Point2i']:
-        directions = DIRECTIONS_INCL_DIAGONAL if diagonal else DIRECTIONS_INCL_DIAGONAL
+        directions = GRID_DIRECTIONS_INCL_DIAGONAL if diagonal else GRID_DIRECTIONS_INCL_DIAGONAL
         return [
             Point2i(self.x + dx, self.y + dy)
             for dx, dy
@@ -93,14 +101,22 @@ class Point2i:
         return self.x ** 2 + self.y ** 2
 
 
-@dataclass
+@dataclass(frozen=True)
 class Point2f:
     x: float
     y: float
 
-    def __init__(self, x=0.0, y=0.0):
-        self.x = x
-        self.y = y
+    def __add__(self, other: 'Point2f'):
+        return Point2f(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other: 'Point2f'):
+        return Point2f(self.x - other.x, self.y - other.y)
+
+    def __str__(self):
+        return f'({self.x}, {self.y})'
+
+    def __repr__(self):
+        return self.__str__()
 
     def distance_to(self, p: 'Point2f') -> float:
         return math.sqrt((p.x - self.x) ** 2 + (p.y - self.y) ** 2)

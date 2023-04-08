@@ -1,14 +1,21 @@
-from cclib.trees.binary_tree_node import BinaryTreeNode
-from cclib.trees.tree_node_utils import get_descendant_layer
+import math
+
+from cclib.geom2d.directional_mover import GridDirectionalMover
 
 def main():
-    root = BinaryTreeNode('r')
-    one = BinaryTreeNode('one')
-    two = BinaryTreeNode('two')
-    root.left = one
-    root.right = two
-    print(root)
-    print(get_descendant_layer(root, 0))
+    mover = GridDirectionalMover()
+    print(mover)
+    for i in range(4):
+        mover.turn_counter_clockwise()
+        print(mover)
+    for i in range(4):
+        mover.turn_clockwise()
+        print(mover)
+    mover.turn_counter_clockwise()
+    for i in range(2):
+        mover.turn_flip()
+        print(mover)
+
 
 if __name__ == '__main__':
     main()
