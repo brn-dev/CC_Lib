@@ -1,3 +1,6 @@
 Geometry2d: shapes overlap, distance between shapes,. .. (shapely)
 
 Gridworld + mover
+
+Monte Carlo
+MiniMax

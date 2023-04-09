@@ -1,8 +1,7 @@
 import math
 
 from .point2d import Point2f, Point2i
-
-FULL_ROTATION_RADIANS = 2 * math.pi
+from .geom2d_utils import FULL_ROTATION_RADIANS
 
 class DirectionalMover:
 
