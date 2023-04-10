@@ -2,5 +2,9 @@ Geometry2d: shapes overlap, distance between shapes,. .. (shapely)
 
 Gridworld + mover
 
-Monte Carlo
+Monte Carlo: "disable" branch if all terminal states have been looked at (complete states)
+
 MiniMax
+
+Parallel workers for each "line" of input
+

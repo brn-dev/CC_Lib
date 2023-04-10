@@ -1,20 +1,20 @@
 import math
+import time
 
-from cclib.geom2d.directional_mover import GridDirectionalMover
+from cclib.parallel import ParallelSolver
+
+def func(s: str) -> str:
+    result = math.factorial(int(s))
+    time.sleep(1)
+    return str(result)
 
 def main():
-    mover = GridDirectionalMover()
-    print(mover)
-    for i in range(4):
-        mover.turn_counter_clockwise()
-        print(mover)
-    for i in range(4):
-        mover.turn_clockwise()
-        print(mover)
-    mover.turn_counter_clockwise()
-    for i in range(2):
-        mover.turn_flip()
-        print(mover)
+    inputs = [str(i) for i in range(100)]
+
+    solver = ParallelSolver()
+    outputs = solver.execute(func, inputs, num_workers=50, print_status=True)
+    print(outputs)
+
 
 
 if __name__ == '__main__':
